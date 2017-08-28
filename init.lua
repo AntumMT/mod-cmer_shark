@@ -136,32 +136,14 @@ mobs:register_mob(':' .. mobname, {
 
 
 -- SPAWNING
-local interval = tonumber(core.settings:get('mobs.shark_interval'))
-local chance = tonumber(core.settings:get('mobs.shark_chance'))
-local min_light = tonumber(core.settings:get('mobs.shark_min_light'))
-local max_light = tonumber(core.settings:get('mobs.shark_max_light'))
-local min_height = tonumber(core.settings:get('mobs.shark_min_height'))
-local max_height = tonumber(core.settings:get('mobs.shark_max_height'))
+local interval = tonumber(core.settings:get('mobs.shark_interval')) or 60
+local chance = tonumber(core.settings:get('mobs.shark_chance')) or 9000
+local min_light = tonumber(core.settings:get('mobs.shark_min_light')) or 4
+local max_light = tonumber(core.settings:get('mobs.shark_max_light')) or 20
+local min_height = tonumber(core.settings:get('mobs.shark_min_height')) or -30
+local max_height = tonumber(core.settings:get('mobs.shark_max_height')) or -3
 local day_toggle = core.settings:get('mobs.shark_spawn_time')
 
-if interval == nil then
-	interval = 60
-end
-if chance == nil then
-	chance = 9000
-end
-if min_light == nil then
-	min_light = 4
-end
-if max_light == nil then
-	max_light = 20
-end
-if min_height == nil then
-	min_height = -30
-end
-if max_height == nil then
-	max_height = -3
-end
 if day_toggle ~= nil then
 	if day_toggle == 'day' then
 		day_toggle = true
