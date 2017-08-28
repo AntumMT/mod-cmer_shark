@@ -31,6 +31,10 @@ else
 	S = function ( s ) return s end
 end
 
+
+local modname = core.get_current_modname()
+local modpath = core.get_modpath(modname)
+
 local version = '0.2.0'
 local variant = 'mobs_redo'
 local variant_version = '0.1'
@@ -40,12 +44,21 @@ core.log('action','MOD: mob_shark loading ...')
 
 
 local mobname = 'mobs:shark'
+local scripts = {
+	'items',
+}
+
+for index, script in ipairs(scripts) do
+	dofile(modpath .. '/' .. script .. '.lua')
+end
+
+
 --local shark_collisionbox = {-0.75, -0.5, -0.75, 0.75, 0.5, 0.75}
 local shark_collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38}
 local shark_drop = {
-	{name='animalmaterials:fish_shark', chance=1, min=3, max=3},
-	{name='animalmaterials:shark_tooth', chance=4, min=1, max=3},  -- FIXME: Original 'chance' value was 0.01
-	{name='animalmaterials:shark_skin', chance=4, min=1, max=1},  --FIXME: Original 'chance' value was 0.01
+	{name='mobs:shark_meat_raw', chance=1, min=3, max=3},
+	{name='mobs:shark_tooth', chance=4, min=1, max=3},  -- FIXME: Original 'chance' value was 0.01
+	{name='mobs:shark_skin', chance=4, min=1, max=1},  -- FIXME: Original 'chance' value was 0.01
 }
 
 mobs:register_mob(':' .. mobname, {
