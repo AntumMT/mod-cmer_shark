@@ -127,7 +127,7 @@ local min_light = tonumber(minetest.settings:get('mobs:shark_min_light'))
 local max_light = tonumber(minetest.settings:get('mobs:shark_max_light'))
 local min_height = tonumber(minetest.settings:get('mobs:shark_min_height'))
 local max_height = tonumber(minetest.settings:get('mobs:shark_max_height'))
-local day_toggle = minetest.settings:get_bool('mobs:shark_day_toggle')
+local day_toggle = minetest.settings:get('mobs:shark_spawn_time')
 
 if min_light == nil then
 	min_light = 4
@@ -143,6 +143,15 @@ if min_height == nil then
 end
 if max_height == nil then
 	max_height = -3
+end
+if day_toggle ~= nil then
+	if day_toggle == 'day' then
+		day_toggle = true
+	elseif day_toggle == 'night' then
+		day_toggle = false
+	else
+		day_toggle = nil
+	end
 end
 
 mobs:spawn({
