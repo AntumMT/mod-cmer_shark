@@ -154,10 +154,15 @@ if day_toggle ~= nil then
 	end
 end
 
+local spawn_nodes = {'default:sand', 'default:desert_sand', 'default:clay'}
+if core.global_exists('ethereal') then
+	table.insert(spawn_nodes, 'ethereal:seaweed')
+end
+
 mobs:spawn({
 	name = mobname,
-	nodes = {'ethereal:seaweed'},
-	neighbors = {'default:water_source', 'default:water_flowing'},
+	nodes = spawn_nodes,
+	neighbors = {'default:water_source'},  -- 'default:water_flowing'},
 	interval = interval,
 	chance = chance,
 	min_light = min_light,
