@@ -125,7 +125,6 @@ mobs:register_mob(':' .. mobname, {
 -- SPAWNING
 local min_light = tonumber(minetest.settings:get('mobs:shark_min_light'))
 local max_light = tonumber(minetest.settings:get('mobs:shark_max_light'))
-local active_object_count = tonumber(minetest.settings:get('mobs:shark_active_object_count'))
 local min_height = tonumber(minetest.settings:get('mobs:shark_min_height'))
 local max_height = tonumber(minetest.settings:get('mobs:shark_max_height'))
 local day_toggle = minetest.settings:get_bool('mobs:shark_day_toggle')
@@ -138,9 +137,6 @@ if max_light == nil then
 end
 if chance == nil then
 	chance = 9000
-end
-if active_object_count == nil then
-	active_object_count = 1
 end
 if min_height == nil then
 	min_height = -30
@@ -157,7 +153,6 @@ mobs:spawn({
 	max_light = max_light,
 	interval = 60,
 	chance = 9000,  -- Override by setting 'mobs:shark_chance'
-	active_object_count = active_object_count,
 	min_height = min_height,
 	max_height = max_height,
 	day_toggle = day_toggle,
