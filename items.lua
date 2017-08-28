@@ -37,3 +37,11 @@ core.register_craftitem('mobs:shark_skin', {
 	description = S('Shark Skin'),
 	inventory_image = 'mobs_shark_skin.png',
 })
+
+
+core.register_craft({
+	type = 'cooking',
+	output = 'mobs:shark_meat_cooked',
+	recipe = 'mobs:shark_meat_raw',
+	cooktime = 5,
+})
