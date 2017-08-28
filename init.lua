@@ -78,7 +78,7 @@ mobs:register_mob(':' .. mobname, {
 	visual_size = {x=0.5, y=0.5},  -- CHANGED (ORIGINAL: {x=1, y=1, z=1})
 	mesh = 'mob_shark.b3d',
 	textures = {
-		{'mob_shark_shark_mesh.png'},
+		{'mobs_shark_mesh.png'},
 	},
 	--gotten_texture = nil,
 	--child_texture = nil,
@@ -185,7 +185,7 @@ mobs:spawn({
 	day_toggle = day_toggle,
 })
 
-mobs:register_egg(':' .. mobname, S('Shark'), 'mob_shark_shark_item.png', 0, false)
+mobs:register_egg(':' .. mobname, S('Shark'), 'mobs_shark_inv.png', 0, false)
 
 
 core.log('action','MOD: mob_shark mod version ' .. version_full .. ' loaded')
