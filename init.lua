@@ -123,20 +123,25 @@ mobs:register_mob(':' .. mobname, {
 
 
 -- SPAWNING
+local interval = tonumber(minetest.settings:get('mobs:shark_interval'))
+local chance = tonumber(minetest.settings:get('mobs:shark_chance'))
 local min_light = tonumber(minetest.settings:get('mobs:shark_min_light'))
 local max_light = tonumber(minetest.settings:get('mobs:shark_max_light'))
 local min_height = tonumber(minetest.settings:get('mobs:shark_min_height'))
 local max_height = tonumber(minetest.settings:get('mobs:shark_max_height'))
 local day_toggle = minetest.settings:get('mobs:shark_spawn_time')
 
+if interval == nil then
+	interval = 60
+end
+if chance == nil then
+	chance = 9000
+end
 if min_light == nil then
 	min_light = 4
 end
 if max_light == nil then
 	max_light = 20
-end
-if chance == nil then
-	chance = 9000
 end
 if min_height == nil then
 	min_height = -30
@@ -158,10 +163,10 @@ mobs:spawn({
 	name = mobname,
 	nodes = {'ethereal:seaweed'},
 	neighbors = {'default:water_source', 'default:water_flowing'},
+	interval = interval,
+	chance = chance,
 	min_light = min_light,
 	max_light = max_light,
-	interval = 60,
-	chance = 9000,  -- Override by setting 'mobs:shark_chance'
 	min_height = min_height,
 	max_height = max_height,
 	day_toggle = day_toggle,
