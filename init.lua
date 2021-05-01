@@ -24,7 +24,7 @@ shark = {
 shark.modpath = core.get_modpath(shark.modname)
 
 local version = "1.0"
-local variant = "creatures"
+local variant = "me" -- Creatures MOB-Engine
 local version_full = tostring(version) .. "-" .. variant
 
 
