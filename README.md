@@ -16,7 +16,6 @@ An aggressive shark for Minetest. Forked from sapier's [animals_modpack][forum.m
 
 #### Optional:
 * [ethereal][forum.ethereal]
-* [intllib][forum.intllib]
 
 
 [lic.shark]: LICENSE.txt
@@ -24,7 +23,6 @@ An aggressive shark for Minetest. Forked from sapier's [animals_modpack][forum.m
 [Minetest]: http://www.minetest.net/
 
 [forum.ethereal]: https://forum.minetest.net/viewtopic.php?t=14638
-[forum.intllib]: https://forum.minetest.net/viewtopic.php?t=4929
 [forum.mobs_redo]: https://forum.minetest.net/viewtopic.php?t=9917
 [forum.mp.animals]: https://forum.minetest.net/viewtopic.php?t=629
 

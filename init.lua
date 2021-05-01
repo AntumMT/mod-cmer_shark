@@ -15,21 +15,7 @@
 -- Contact sapier a t gmx net
 -------------------------------------------------------------------------------
 
-
--- Boilerplate to support localized strings if intllib mod is installed.
-local S
-if core.global_exists('intllib') then
-	dofile(core.get_modpath('intllib') .. '/intllib.lua')
-	if intllib.make_gettext_pair then
-		-- New method using gettext.
-		S = intllib.make_gettext_pair(core.get_current_modname())
-	else
-		-- Old method using text files.
-		S = intllib.Getter(core.get_current_modname())
-	end
-else
-	S = function ( s ) return s end
-end
+local S = core.get_translator("shark")
 
 
 local modname = core.get_current_modname()
