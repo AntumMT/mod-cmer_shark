@@ -1,4 +1,4 @@
--- Items for mob_shark mod
+-- Items for shark mod
 
 
 local S = core.get_translator("shark")
