@@ -28,4 +28,4 @@ shark.max_height (Shark max spawn height) int -3
 # | ■ day:   spawns during day
 # | ■ night: spawns during night
 # | ■ any:   spawns anytime
-#shark.spawn_time (Shark spawn time) enum any day,night,any
+shark.spawn_time (Shark spawn time) enum any day,night,any

@@ -36,3 +36,23 @@ shark.min_height = tonumber(core.settings:get("shark.min_height")) or -30
 --
 --  @setting shark.max_height
 shark.max_height = tonumber(core.settings:get("shark.max_height")) or -3
+
+--- Times that shark can spawn.
+--
+--  Modes supported:
+--  - day:   spawns during day
+--  - night: spawns during night
+--  - any:   spawns anytime (default)
+--
+--  @setting shark.spawn_time
+local spawn_time = core.settings:get("shark.spawn_time") or "any"
+
+shark.min_time = 0
+shark.max_time = 23999
+if spawn_time == "day" then
+	shark.min_time = 6000
+	shark.max_time = 19000
+elseif spawn_time == "night" then
+	shark.min_time = 19500
+	shark.max_time = 4500
+end

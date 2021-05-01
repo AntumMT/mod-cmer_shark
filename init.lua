@@ -1,6 +1,6 @@
 -------------------------------------------------------------------------------
 -- Mob Framework Mod by Sapier
--- Converted to 'mobs_redo' mod by Jordan Irwin (AntumDeluge)
+-- Converted to 'creatures' mob engine API by Jordan Irwin (AntumDeluge)
 --
 -- You may copy, use, modify or do nearly anything except removing this
 -- copyright notice.
@@ -141,21 +141,6 @@ mobs:register_mob(":" .. mobname, {
 })
 ]]
 
-
---[[
-local day_toggle = core.settings:get("shark.spawn_time")
-
-if day_toggle ~= nil then
-	if day_toggle == "day" then
-		day_toggle = true
-	elseif day_toggle == "night" then
-		day_toggle = false
-	else
-		day_toggle = nil
-	end
-end
-]]
-
 local spawn_nodes = {"default:sand", "default:desert_sand", "default:clay"}
 if core.global_exists("ethereal") then
 	table.insert(spawn_nodes, "ethereal:seaweed")
@@ -255,7 +240,7 @@ local shark_def = {
 		abm_chance = shark.chance,
 		--max_number = 1,
 		number = 1,
-		--time_range = {min=, max=},
+		time_range = {min=shark.min_time, max=shark.max_time},
 		light = {min=shark.min_light, max=shark.max_light},
 		height_limit = {min=shark.min_height, max=shark.max_height},
 		spawn_egg = {
