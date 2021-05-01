@@ -18,8 +18,10 @@
 local S = core.get_translator("shark")
 
 
-local modname = core.get_current_modname()
-local modpath = core.get_modpath(modname)
+shark = {
+	modname = core.get_current_modname()
+}
+shark.modpath = core.get_modpath(shark.modname)
 
 local version = "1.0"
 local variant = "creatures"
@@ -33,9 +35,9 @@ local function mlog(lvl, msg)
 	end
 
 	if lvl == nil then
-		core.log("[" .. modname .. "] " .. msg)
+		core.log("[" .. shark.modname .. "] " .. msg)
 	else
-		core.log(lvl, "[" .. modname .. "] " .. msg)
+		core.log(lvl, "[" .. shark.modname .. "] " .. msg)
 	end
 end
 
@@ -45,11 +47,12 @@ mlog("action", "v" .. version_full .. " loading ...")
 
 local mobname = "creatures:shark"
 local scripts = {
+	"settings",
 	"items",
 }
 
-for index, script in ipairs(scripts) do
-	dofile(modpath .. "/" .. script .. ".lua")
+for _, script in ipairs(scripts) do
+	dofile(shark.modpath .. "/" .. script .. ".lua")
 end
 
 
