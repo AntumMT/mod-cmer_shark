@@ -142,13 +142,6 @@ mobs:register_mob(":" .. mobname, {
 ]]
 
 
--- SPAWNING
-local interval = tonumber(core.settings:get("shark.interval")) or 60
-local chance = tonumber(core.settings:get("shark.chance")) or 9000
-local min_light = tonumber(core.settings:get("shark.min_light")) or 4
-local max_light = tonumber(core.settings:get("shark.max_light")) or 20
-local min_height = tonumber(core.settings:get("shark.min_height")) or -30
-local max_height = tonumber(core.settings:get("shark.max_height")) or -3
 --[[
 local day_toggle = core.settings:get("shark.spawn_time")
 
@@ -258,13 +251,13 @@ local shark_def = {
 			spawn_on = spawn_nodes,
 			neighbors = {"default:water_source", "default:water_flowing",},
 		},
-		abm_interval = interval,
-		abm_chance = chance,
+		abm_interval = shark.interval,
+		abm_chance = shark.chance,
 		--max_number = 1,
 		number = 1,
 		--time_range = {min=, max=},
-		light = {min=min_light, max=max_light},
-		height_limit = {min=min_height, max=max_height},
+		light = {min=shark.min_light, max=shark.max_light},
+		height_limit = {min=shark.min_height, max=shark.max_height},
 		spawn_egg = {
 			description = S("Shark"),
 			texture = "shark_inv.png",
