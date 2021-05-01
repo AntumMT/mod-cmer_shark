@@ -21,34 +21,51 @@ local S = core.get_translator("shark")
 local modname = core.get_current_modname()
 local modpath = core.get_modpath(modname)
 
-local version = '0.2.0'
-local variant = 'mobs_redo'
-local variant_version = '0.1'
-local version_full = version .. '-' .. variant .. '-' .. variant_version
-
-core.log('action','MOD: mob_shark loading ...')
+local version = "1.0"
+local variant = "creatures"
+local version_full = tostring(version) .. "-" .. variant
 
 
-local mobname = 'mobs:shark'
-local scripts = {
-	'items',
-}
+local function mlog(lvl, msg)
+	if lvl and msg == nil then
+		msg = lvl
+		lvl = nil
+	end
 
-for index, script in ipairs(scripts) do
-	dofile(modpath .. '/' .. script .. '.lua')
+	if lvl == nil then
+		core.log("[" .. modname .. "] " .. msg)
+	else
+		core.log(lvl, "[" .. modname .. "] " .. msg)
+	end
 end
 
 
---local shark_collisionbox = {-0.75, -0.5, -0.75, 0.75, 0.5, 0.75}
-local shark_collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38}
-local shark_drop = {
-	{name='mobs:shark_meat_raw', chance=1, min=3, max=3},
-	{name='mobs:shark_tooth', chance=4, min=1, max=3},  -- FIXME: Original 'chance' value was 0.01
-	{name='mobs:shark_skin', chance=4, min=1, max=1},  -- FIXME: Original 'chance' value was 0.01
+mlog("action", "v" .. version_full .. " loading ...")
+
+
+local mobname = "creatures:shark"
+local scripts = {
+	"items",
 }
 
-mobs:register_mob(':' .. mobname, {
-	type = 'monster',
+for index, script in ipairs(scripts) do
+	dofile(modpath .. "/" .. script .. ".lua")
+end
+
+
+--[[
+--local shark_collisionbox = {-0.75, -0.5, -0.75, 0.75, 0.5, 0.75}
+--local shark_collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38}
+local shark_drop = {
+	{name="shark:meat_raw", chance=1, min=3, max=3},
+	{name="shark:tooth", chance=4, min=1, max=3},  -- FIXME: Original 'chance' value was 0.01
+	{name="shark:skin", chance=4, min=1, max=1},  -- FIXME: Original 'chance' value was 0.01
+}
+]]
+
+--[[
+mobs:register_mob(":" .. mobname, {
+	type = "monster",
 	--passive = nil,
 	--docile_by_day = nil,
 	--attacks_monsters = nil,
@@ -60,11 +77,11 @@ mobs:register_mob(':' .. mobname, {
 	hp_max = 15,  -- CHANGED (ORIGINAL: 5)
 	--physical = nil,
 	collisionbox = shark_collisionbox,
-	visual = 'mesh',
+	visual = "mesh",
 	visual_size = {x=0.5, y=0.5},  -- CHANGED (ORIGINAL: {x=1, y=1, z=1})
-	mesh = 'mob_shark.b3d',
+	mesh = "shark.b3d",
 	textures = {
-		{'mobs_shark_mesh.png'},
+		{"shark_mesh.png"},
 	},
 	--gotten_texture = nil,
 	--child_texture = nil,
@@ -80,7 +97,7 @@ mobs:register_mob(':' .. mobname, {
 	jump = false,
 	jump_height = 0,
 	fly = true,
-	fly_in = 'default:water_source',  -- FIXME: Should be able to swim in 'default:water_flowing' as well
+	fly_in = "default:water_source",  -- FIXME: Should be able to swim in 'default:water_flowing' as well
 	damage = 6,
 	--recovery_time = nil,
 	--knock_back = nil,
@@ -102,7 +119,7 @@ mobs:register_mob(':' .. mobname, {
 	--floats = nil,
 	--on_rightclick = nil,
 	--pathfinding = nil,
-	attack_type = 'dogfight',
+	attack_type = "dogfight",
 	--custom_attack = nil,
 	--double_melee_attack = nil,
 	--on_blast = nil,
@@ -119,36 +136,40 @@ mobs:register_mob(':' .. mobname, {
 		run_end = 160,
 	},
 })
+]]
 
 
 -- SPAWNING
-local interval = tonumber(core.settings:get('mobs.shark_interval')) or 60
-local chance = tonumber(core.settings:get('mobs.shark_chance')) or 9000
-local min_light = tonumber(core.settings:get('mobs.shark_min_light')) or 4
-local max_light = tonumber(core.settings:get('mobs.shark_max_light')) or 20
-local min_height = tonumber(core.settings:get('mobs.shark_min_height')) or -30
-local max_height = tonumber(core.settings:get('mobs.shark_max_height')) or -3
-local day_toggle = core.settings:get('mobs.shark_spawn_time')
+local interval = tonumber(core.settings:get("shark.interval")) or 60
+local chance = tonumber(core.settings:get("shark.chance")) or 9000
+local min_light = tonumber(core.settings:get("shark.min_light")) or 4
+local max_light = tonumber(core.settings:get("shark.max_light")) or 20
+local min_height = tonumber(core.settings:get("shark.min_height")) or -30
+local max_height = tonumber(core.settings:get("shark.max_height")) or -3
+--[[
+local day_toggle = core.settings:get("shark.spawn_time")
 
 if day_toggle ~= nil then
-	if day_toggle == 'day' then
+	if day_toggle == "day" then
 		day_toggle = true
-	elseif day_toggle == 'night' then
+	elseif day_toggle == "night" then
 		day_toggle = false
 	else
 		day_toggle = nil
 	end
 end
+]]
 
-local spawn_nodes = {'default:sand', 'default:desert_sand', 'default:clay'}
-if core.global_exists('ethereal') then
-	table.insert(spawn_nodes, 'ethereal:seaweed')
+local spawn_nodes = {"default:sand", "default:desert_sand", "default:clay"}
+if core.global_exists("ethereal") then
+	table.insert(spawn_nodes, "ethereal:seaweed")
 end
 
+--[[
 mobs:spawn({
 	name = mobname,
 	nodes = spawn_nodes,
-	neighbors = {'default:water_source'},  -- 'default:water_flowing'},
+	neighbors = {"default:water_source"},  -- 'default:water_flowing'},
 	interval = interval,
 	chance = chance,
 	min_light = min_light,
@@ -158,7 +179,98 @@ mobs:spawn({
 	day_toggle = day_toggle,
 })
 
-mobs:register_egg(':' .. mobname, S('Shark'), 'mobs_shark_inv.png', 0, false)
+mobs:register_egg(":" .. mobname, S("Shark"), "mobs_shark_inv.png", 0, false)
+]]
+
+local shark_def = {
+	name = "creatures:shark",
+	stats = {
+		hp = 15, -- TODO: add setting to change
+		--hp_min = 10,
+		--hp_max = 15,
+		hostile = true,
+		lifetime = 600, -- 10 minutes
+		can_jump = 0,
+		can_swim = true,
+	},
+	-- FIXME:
+	-- - shark moves on land after being attacked
+	-- - shark doesn't attack until attacked
+	-- - shark floats into air when attacked
+	modes = {
+		idle = {
+			chance = 0.1,
+			duration = 30,
+			moving_speed = 0,
+		},
+		follow = {
+			chance = 0.1,
+			duration = 120,
+			moving_speed = 2,
+		},
+		attack = {
+			chance = 0.8,
+			moving_speed = 3,
+		},
+	},
+	model = {
+		mesh = "shark.b3d",
+		textures = {"shark_mesh.png"},
+		collisionbox = {-0.38, -0.25, -0.38, 0.38, 0.25, 0.38},
+		--rotation = 0.0,
+		animations = {
+			idle = {
+				start = 1,
+				stop = 80,
+				speed = 24,
+			},
+			follow = {
+				start = 80,
+				stop = 160,
+				speed = 24,
+			},
+			attack = {
+				start = 80,
+				stop = 160,
+				speed = 24,
+			},
+		},
+	},
+	drops = {
+		{"shark:meat_raw", 3, 1.0},
+		{"shark:tooth", {min=1, max=3}, 0.4},
+		{"shark:skin", 1, 0.4},
+	},
+	combat = {
+		attack_damage = 6,
+		--attack_speed = 1.0,
+		attack_radius = 2.0,
+		--search_enemy = ,
+		--search_timer = ,
+		search_radius = 10.0,
+		--search_type = ,
+	},
+	spawning = {
+		abm_nodes = {
+			spawn_on = spawn_nodes,
+			neighbors = {"default:water_source", "default:water_flowing",},
+		},
+		abm_interval = interval,
+		abm_chance = chance,
+		--max_number = 1,
+		number = 1,
+		--time_range = {min=, max=},
+		light = {min=min_light, max=max_light},
+		height_limit = {min=min_height, max=max_height},
+		spawn_egg = {
+			description = S("Shark"),
+			texture = "shark_inv.png",
+		},
+		--spawner = {},
+	},
+}
+
+creatures.register_mob(shark_def)
 
 
-core.log('action','MOD: mob_shark mod version ' .. version_full .. ' loaded')
+mlog("action", "v" .. version_full .. " loaded")
