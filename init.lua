@@ -149,7 +149,7 @@ local shark_def = {
 	},
 }
 
-creatures.register_mob(shark_def)
+cmer.register_mob(shark_def)
 
 
 mlog("action", "v" .. version_full .. " loaded")
