@@ -144,7 +144,7 @@ local shark_def = {
 	},
 }
 
-cmer.register_mob(shark_def)
+creatures.register_mob(shark_def)
 
 if core.global_exists("asm") then
 	asm.addEgg({
