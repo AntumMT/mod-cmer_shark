@@ -63,6 +63,7 @@ end
 
 local shark_def = {
 	name = ":creatures:shark",
+	nametag = creatures.feature_nametags and S("Shark") or nil,
 	stats = {
 		hp = 15, -- TODO: add setting to change
 		--hp_min = 10,
