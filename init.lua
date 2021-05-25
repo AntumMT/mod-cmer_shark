@@ -62,7 +62,7 @@ if core.global_exists("ethereal") then
 end
 
 local shark_def = {
-	name = "creatures:shark",
+	name = ":creatures:shark",
 	stats = {
 		hp = 15, -- TODO: add setting to change
 		--hp_min = 10,
