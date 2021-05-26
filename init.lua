@@ -152,6 +152,7 @@ if core.global_exists("asm") then
 		name = "shark",
 		inventory_image = "shark_inv.png",
 		spawn = mobname,
+		ingredients = "shark:tooth",
 	})
 end
 
