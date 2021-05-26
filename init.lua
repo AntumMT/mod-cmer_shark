@@ -150,7 +150,7 @@ creatures.register_mob(shark_def)
 if core.global_exists("asm") then
 	asm.addEgg({
 		name = "shark",
-		inventory_image = "shark_spawnegg.png",
+		inventory_image = "shark_inv.png",
 		spawn = mobname,
 	})
 end
