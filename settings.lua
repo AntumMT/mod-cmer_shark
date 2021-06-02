@@ -25,7 +25,7 @@ shark.min_light = tonumber(core.settings:get("shark.min_light")) or 4
 --  See: [Node definition] light_source
 --
 --  @setting shark.max_light
-shark.max_light = tonumber(core.settings:get("shark.max_light")) or 20
+shark.max_light = tonumber(core.settings:get("shark.max_light")) or core.LIGHT_MAX
 
 --- Minimum height at which shark can spawn.
 --
