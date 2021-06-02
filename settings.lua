@@ -6,10 +6,10 @@ shark.interval = tonumber(core.settings:get("shark.interval")) or 60
 
 --- Chance for each node of spawning shark at each interval.
 --
---  The value is inverted. So a chance of value of 9000 equals 1/9000.
+--  The value is inverted. So a chance of value of 5000 equals 1/5000.
 --
 --  @setting shark.chance
-shark.chance = tonumber(core.settings:get("shark.chance")) or 9000
+shark.chance = tonumber(core.settings:get("shark.chance")) or 5000
 
 --- Minimum node light required for spawning.
 --
