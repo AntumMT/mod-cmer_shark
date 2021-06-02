@@ -56,7 +56,7 @@ for _, script in ipairs(scripts) do
 end
 
 
-local spawn_nodes = {"default:sand", "default:desert_sand", "default:clay"}
+local spawn_nodes = {"group:sand", "default:clay"}
 if core.global_exists("ethereal") then
 	table.insert(spawn_nodes, "ethereal:seaweed")
 end
